@@ -13,21 +13,30 @@ export default function HeroSection({ settings }) {
   const subtitle  = settings?.heroSubtitle || 'The highest-rated villas, lodges & resorts across Kenya — book in one tap via Expedia.'
   const chips     = settings?.featuredDestinations || []
 
-  // Re-initialise Expedia widget after mount (needed for SPA navigation)
+  // Re-init widget after component mounts and after script loads
   useEffect(() => {
-    if (window.EGWidgets) window.EGWidgets.init()
+    const tryInit = () => {
+      if (window.EGWidgets) {
+        window.EGWidgets.init()
+      }
+    }
+    // Try immediately (script may already be loaded)
+    tryInit()
+    // Also try after short delay in case script is still loading
+    const t1 = setTimeout(tryInit, 1000)
+    const t2 = setTimeout(tryInit, 3000)
+    return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
-
-  const goToExpedia = (link) => {
-    if (window.goToExpedia) window.goToExpedia(link)
-  }
 
   return (
     <section className="relative min-h-[88vh] flex flex-col items-center justify-center text-center overflow-hidden px-6 pb-20 pt-12">
       {/* Background */}
       <div
         className="hero-bg absolute inset-0 z-0 bg-cover bg-center"
-        style={{ backgroundImage: `url('${bgImage}')`, filter: 'grayscale(55%) brightness(0.42)' }}
+        style={{
+          backgroundImage: `url('${bgImage}')`,
+          filter: 'grayscale(55%) brightness(0.42)'
+        }}
       />
       {/* Overlay */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/25 to-black/60" />
@@ -57,7 +66,7 @@ export default function HeroSection({ settings }) {
 
         {/* ── EXPEDIA SEARCH WIDGET ── */}
         <div
-          className="eg-widget-wrap w-full"
+          className="w-full max-w-[900px] mx-auto"
           style={{ animation: 'fadeUp 0.8s 0.5s both' }}
         >
           <div
@@ -81,7 +90,7 @@ export default function HeroSection({ settings }) {
             {chips.map((chip) => (
               <button
                 key={chip.label}
-                onClick={() => goToExpedia(chip.expediaQuery)}
+                onClick={() => window.goToExpedia?.(chip.expediaQuery)}
                 className="text-white/75 px-3 py-1 border border-white/25 rounded-full text-[0.78rem] hover:bg-white/12 hover:border-white/65 hover:text-white transition-all"
               >
                 {chip.label}

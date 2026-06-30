@@ -1,5 +1,6 @@
 // app/layout.js
 import './globals.css'
+import Script from 'next/script'
 import { client, SITE_SETTINGS_QUERY } from '@/lib/sanity'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
@@ -37,27 +38,6 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <head>
-        {/* Google Translate */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              function googleTranslateElementInit(){
-                new google.translate.TranslateElement({
-                  pageLanguage:'en',
-                  includedLanguages:'en,sw,fr,de,es,ar,zh-CN,pt,it',
-                  layout:google.translate.TranslateElement.InlineLayout.SIMPLE,
-                  autoDisplay:false
-                },'google_translate_element');
-              }
-            `,
-          }}
-        />
-        <script
-          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-          async
-        />
-      </head>
       <body>
         <PageLoader />
         <ExpediaLoader />
@@ -66,11 +46,32 @@ export default async function RootLayout({ children }) {
         <main>{children}</main>
         <Footer settings={settings} />
 
-        {/* Expedia Widget Script */}
-        <script
+        {/* Google Translate — must load before body content finishes */}
+        <Script id="google-translate-init" strategy="afterInteractive">
+          {`
+            function googleTranslateElementInit(){
+              new google.translate.TranslateElement({
+                pageLanguage:'en',
+                includedLanguages:'en,sw,fr,de,es,ar,zh-CN,pt,it',
+                layout:google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay:false
+              },'google_translate_element');
+            }
+          `}
+        </Script>
+        <Script
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          strategy="afterInteractive"
+        />
+
+        {/* Expedia Widget — lazyOnload so it doesn't block page render */}
+        <Script
           src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"
-          className="eg-widgets-script"
-          async
+          strategy="lazyOnload"
+          id="eg-widgets-script"
+          onLoad={() => {
+            if (window.EGWidgets) window.EGWidgets.init()
+          }}
         />
       </body>
     </html>
