@@ -58,7 +58,7 @@ export default function PropertyGrid({ properties }) {
     Apartment: 'Apartments in Kenya',
     Resort: 'Resorts in Kenya',
     Lodge: 'Safari Lodges in Kenya',
-    Hotel: 'Hotels & B&Bs in Kenya',
+    Hotel: 'Hotels in Kenya',
   }
 
   const sectionTitle = locationFilter
@@ -75,12 +75,12 @@ export default function PropertyGrid({ properties }) {
         <h2 className="text-[clamp(1.5rem,3vw,2rem)] font-extrabold tracking-tight">
           {sectionTitle}
         </h2>
-        <button
+        {/* <button
           className="text-[0.875rem] font-semibold underline underline-offset-[3px] text-[#111]"
           onClick={() => window.goToExpedia?.('https://www.expedia.com/Hotels')}
         >
           View all on Expedia →
-        </button>
+        </button> */}
       </div>
 
       {/* Location filter banner */}
@@ -93,12 +93,12 @@ export default function PropertyGrid({ properties }) {
             <strong>{locationFilter}</strong>
             {filtered.length === 0 && ' yet — browse on Expedia for full availability.'}
           </span>
-          <button
+          {/* <button
             className="text-[0.875rem] font-semibold underline underline-offset-[3px] text-[#111] whitespace-nowrap"
             onClick={() => window.goToExpedia?.(`https://www.expedia.com/Hotel-Search?destination=${encodeURIComponent(locationFilter + ', Kenya')}`)}
           >
             View all in {locationFilter} on Expedia →
-          </button>
+          </button> */}
         </div>
       )}
 

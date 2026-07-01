@@ -27,7 +27,7 @@ export async function generateMetadata() {
     },
     twitter: {
       card: 'summary_large_image',
-      title: settings?.siteTitle || 'StaycationKE',
+      title: settings?.siteTitle || 'Staycation Kenya',
       description: settings?.siteDescription || 'Holiday rentals across Kenya.',
     },
   }

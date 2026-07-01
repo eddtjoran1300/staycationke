@@ -242,7 +242,7 @@ export default function PropertyModal({ property, onClose }) {
               className="px-[28px] py-[14px] bg-[#111] text-white rounded-[11px] text-[0.95rem] font-bold flex items-center gap-[9px] hover:bg-[#333] transition-colors hover:-translate-y-[1px] transition-transform whitespace-nowrap"
               onClick={handleExpedia}
             >
-              View prices on Expedia
+              View prices 
               <svg viewBox="0 0 24 24" className="w-[17px] h-[17px] stroke-current fill-none stroke-[2.3]" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
               </svg>
