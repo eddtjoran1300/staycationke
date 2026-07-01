@@ -29,7 +29,7 @@ export default function HeroSection({ settings }) {
   }, [])
 
   return (
-    <section className="relative min-h-[88vh] flex flex-col items-center justify-center text-center overflow-hidden px-6 pb-20 pt-12">
+    <section className="relative min-h-[88vh] flex flex-col items-center justify-center text-center px-6 pb-20 pt-12">
       {/* Background */}
       <div
         className="hero-bg absolute inset-0 z-0 bg-cover bg-center"
@@ -67,7 +67,7 @@ export default function HeroSection({ settings }) {
         {/* ── EXPEDIA SEARCH WIDGET ── */}
         <div
           className="w-full max-w-[900px] mx-auto"
-          style={{ animation: 'fadeUp 0.8s 0.5s both' }}
+          style={{ animation: 'fadeUp 0.8s 0.5s both', minHeight: '80px' }}
         >
           <div
             className="eg-widget"
@@ -77,6 +77,7 @@ export default function HeroSection({ settings }) {
             data-network="pz"
             data-camref="1101l5EmK4"
             data-pubref=""
+            style={{ display: 'block', minHeight: '80px', width: '100%' }}
           />
         </div>
 
