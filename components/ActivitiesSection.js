@@ -36,12 +36,12 @@ export default function ActivitiesSection({ activities }) {
           <h2 className="text-[clamp(1.5rem,3vw,2rem)] font-extrabold tracking-tight">
             Experiences Across Kenya
           </h2>
-          <button
+          {/* <button
             className="text-[0.875rem] font-semibold underline underline-offset-[3px] text-[#111]"
             onClick={() => window.goToExpedia?.('https://www.expedia.com/things-to-do')}
           >
             View all on Expedia →
-          </button>
+          </button> */}
         </div>
 
         {/* Category filter */}

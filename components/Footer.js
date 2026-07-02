@@ -77,16 +77,16 @@ export default function Footer({ settings }) {
         {/* Bottom bar */}
         <div className="border-t border-white/[0.08] pt-6 flex justify-between items-center flex-wrap gap-4">
           <p className="text-[0.75rem] text-white/25 font-light">
-            © {new Date().getFullYear()} StaycationKE. All rights reserved. Bookings powered by Expedia affiliate programme.
+            © {new Date().getFullYear()} StaycationKE. All rights reserved.
           </p>
-          <span className="text-[0.72rem] text-white/25">
+          {/* <span className="text-[0.72rem] text-white/25">
             Rates &amp; booking via <strong className="text-white/50">Expedia</strong>
-          </span>
+          </span> */}
         </div>
-        <p className="text-[0.7rem] text-white/[0.18] mt-4 leading-[1.7] font-light">
+        {/* <p className="text-[0.7rem] text-white/[0.18] mt-4 leading-[1.7] font-light">
           {disclaimer}{' '}
           <Link href="/affiliate" className="text-white/35 underline">Affiliate Disclosure</Link>.
-        </p>
+        </p> */}
       </div>
     </footer>
   )
