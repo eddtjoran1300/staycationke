@@ -11,14 +11,14 @@ import ShareToast from '@/components/ShareToast'
 export async function generateMetadata() {
   const settings = await client.fetch(SITE_SETTINGS_QUERY)
   return {
-    title: settings?.siteTitle || 'StaycationKE | Holiday Rentals & Experiences in Kenya',
+    title: settings?.siteTitle || 'Staycation KE | Holiday Rentals & Experiences in Kenya',
     description: settings?.siteDescription || 'Discover and book the best holiday rentals across Kenya.',
     metadataBase: new URL(settings?.siteUrl || 'https://staycationske.com'),
     openGraph: {
-      title: settings?.siteTitle || 'StaycationKE',
+      title: settings?.siteTitle || 'Staycation KE',
       description: settings?.siteDescription || 'Holiday rentals across Kenya.',
       url: settings?.siteUrl || 'https://staycationske.com',
-      siteName: 'StaycationKE',
+      siteName: 'Staycation KE',
       images: settings?.ogImage
         ? [{ url: `https://cdn.sanity.io/images/duscjrto/production/${settings.ogImage.asset._ref.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png').replace('-webp', '.webp')}`, width: 1200, height: 630 }]
         : [{ url: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1200&q=80', width: 1200, height: 630 }],
@@ -27,7 +27,7 @@ export async function generateMetadata() {
     },
     twitter: {
       card: 'summary_large_image',
-      title: settings?.siteTitle || 'Staycation Kenya',
+      title: settings?.siteTitle || 'StaycationKE',
       description: settings?.siteDescription || 'Holiday rentals across Kenya.',
     },
   }
@@ -46,7 +46,7 @@ export default async function RootLayout({ children }) {
         <main>{children}</main>
         <Footer settings={settings} />
 
-        {/* Google Translate — must load before body content finishes */}
+        {/* Google Translate */}
         <Script id="google-translate-init" strategy="afterInteractive">
           {`
             function googleTranslateElementInit(){
@@ -64,14 +64,11 @@ export default async function RootLayout({ children }) {
           strategy="afterInteractive"
         />
 
-        {/* Expedia Widget — lazyOnload so it doesn't block page render */}
+        {/* Expedia Widget — no onLoad here, HeroSection handles init */}
         <Script
           src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"
           strategy="lazyOnload"
           id="eg-widgets-script"
-          onLoad={() => {
-            if (window.EGWidgets) window.EGWidgets.init()
-          }}
         />
       </body>
     </html>
