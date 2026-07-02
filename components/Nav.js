@@ -2,6 +2,7 @@
 // components/Nav.js
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import TranslateWidget from './TranslateWidget'
 
 export default function Nav({ settings }) {
   const pathname = usePathname()
@@ -16,11 +17,9 @@ export default function Nav({ settings }) {
       {/* Logo */}
       <Link
         href="/"
-        className="text-[1.2rem] font-extrabold tracking-tight flex items-center gap-2 text-[#111]"
+        className="text-[1.2rem] font-extrabold tracking-tight flex items-center gap-2 text-[#111] flex-shrink-0"
       >
-        <span
-          className="nav-dot w-[9px] h-[9px] bg-[#111] rounded-full block"
-        />
+        <span className="nav-dot w-[9px] h-[9px] bg-[#111] rounded-full block flex-shrink-0" />
         StaycationKE
       </Link>
 
@@ -29,8 +28,17 @@ export default function Nav({ settings }) {
         <li>
           <Link
             href="/"
-            onClick={(e) => { e.preventDefault(); if(pathname==='/') scrollTo('properties') }}
-            className={`px-4 h-16 flex items-center text-[0.875rem] font-medium border-b-2 transition-colors ${pathname === '/' ? 'text-[#111] border-[#111]' : 'text-[#666] border-transparent hover:text-[#111] hover:border-[#111]'}`}
+            onClick={(e) => {
+              if (pathname === '/') {
+                e.preventDefault()
+                scrollTo('properties')
+              }
+            }}
+            className={`px-4 h-16 flex items-center text-[0.875rem] font-medium border-b-2 transition-colors ${
+              pathname === '/'
+                ? 'text-[#111] border-[#111]'
+                : 'text-[#666] border-transparent hover:text-[#111] hover:border-[#111]'
+            }`}
           >
             Top Destinations
           </Link>
@@ -55,7 +63,7 @@ export default function Nav({ settings }) {
 
       {/* Right: Translate */}
       <div className="flex items-center gap-3 flex-shrink-0">
-        <div id="google_translate_element" />
+        <TranslateWidget />
       </div>
     </nav>
   )
