@@ -1,6 +1,6 @@
 'use client'
-// components/Nav.js
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import TranslateWidget from './TranslateWidget'
 
@@ -13,55 +13,49 @@ export default function Nav({ settings }) {
   }
 
   return (
-    <nav className="sticky top-0 z-[200] bg-white/96 backdrop-blur-[14px] border-b border-[#e0e0e0] px-8 h-16 flex items-center justify-between gap-4">
+    <nav className="sticky top-0 z-[200] bg-[#111] border-b border-white/10 px-8 h-16 flex items-center justify-between gap-4">
       {/* Logo */}
-      <Link
-        href="/"
-        className="text-[1.2rem] font-extrabold tracking-tight flex items-center gap-2 text-[#111] flex-shrink-0"
-      >
-        <span className="nav-dot w-[9px] h-[9px] bg-[#111] rounded-full block flex-shrink-0" />
-        StaycationKE
+      <Link href="/" className="flex items-center flex-shrink-0">
+        <Image
+          src="/logo.png"
+          alt="StaycationKE"
+          width={160}
+          height={40}
+          className="h-8 w-auto object-contain"
+          priority
+        />
       </Link>
 
-      {/* Nav links — hidden on mobile */}
+      {/* Nav links */}
       <ul className="hidden md:flex gap-0 list-none">
         <li>
           <Link
             href="/"
             onClick={(e) => {
-              if (pathname === '/') {
-                e.preventDefault()
-                scrollTo('properties')
-              }
+              if (pathname === '/') { e.preventDefault(); scrollTo('properties') }
             }}
             className={`px-4 h-16 flex items-center text-[0.875rem] font-medium border-b-2 transition-colors ${
               pathname === '/'
-                ? 'text-[#111] border-[#111]'
-                : 'text-[#666] border-transparent hover:text-[#111] hover:border-[#111]'
+                ? 'text-white border-white'
+                : 'text-white/60 border-transparent hover:text-white hover:border-white'
             }`}
           >
             Top Destinations
           </Link>
         </li>
         <li>
-          <Link
-            href="/#activities"
-            className="px-4 h-16 flex items-center text-[0.875rem] font-medium text-[#666] border-b-2 border-transparent hover:text-[#111] hover:border-[#111] transition-colors"
-          >
+          <Link href="/#activities" className="px-4 h-16 flex items-center text-[0.875rem] font-medium text-white/60 border-b-2 border-transparent hover:text-white hover:border-white transition-colors">
             Experiences
           </Link>
         </li>
         <li>
-          <Link
-            href="/#destinations"
-            className="px-4 h-16 flex items-center text-[0.875rem] font-medium text-[#666] border-b-2 border-transparent hover:text-[#111] hover:border-[#111] transition-colors"
-          >
+          <Link href="/#destinations" className="px-4 h-16 flex items-center text-[0.875rem] font-medium text-white/60 border-b-2 border-transparent hover:text-white hover:border-white transition-colors">
             Destinations
           </Link>
         </li>
       </ul>
 
-      {/* Right: Translate */}
+      {/* Translate */}
       <div className="flex items-center gap-3 flex-shrink-0">
         <TranslateWidget />
       </div>

@@ -1,5 +1,6 @@
 // components/Footer.js
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer({ settings }) {
   const tagline    = settings?.footerTagline    || "Kenya's curated holiday rental platform. Discover and book the finest stays across Kenya — coast to safari."
@@ -14,7 +15,15 @@ export default function Footer({ settings }) {
         <div className="flex justify-between items-start gap-12 mb-12 flex-wrap">
           {/* Brand */}
           <div>
-            <div className="text-[1.15rem] font-extrabold tracking-tight mb-4">StaycationKE</div>
+            <Link href="/" className="block mb-4">
+              <Image
+                src="/logo.png"
+                alt="StaycationKE"
+                width={180}
+                height={45}
+                className="h-9 w-auto object-contain"
+              />
+            </Link>
             <p className="text-[0.82rem] text-white/40 max-w-[260px] leading-[1.7] font-light">{tagline}</p>
             {/* Social */}
             <div className="flex gap-[10px] mt-5">
